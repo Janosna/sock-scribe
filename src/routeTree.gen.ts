@@ -11,7 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ShopRouteImport } from './routes/shop'
+import { Route as WarenkorbRouteImport } from './routes/warenkorb'
 import { Route as ProduktSlugRouteImport } from './routes/produkt.$slug'
+import { Route as ApiPublicWebhooksStripeRouteImport } from './routes/api/public/webhooks/stripe'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -23,40 +25,74 @@ const ShopRoute = ShopRouteImport.update({
   path: '/shop',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WarenkorbRoute = WarenkorbRouteImport.update({
+  id: '/warenkorb',
+  path: '/warenkorb',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProduktSlugRoute = ProduktSlugRouteImport.update({
   id: '/produkt/$slug',
   path: '/produkt/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicWebhooksStripeRoute = ApiPublicWebhooksStripeRouteImport.update({
+  id: '/api/public/webhooks/stripe',
+  path: '/api/public/webhooks/stripe',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/shop': typeof ShopRoute
+  '/warenkorb': typeof WarenkorbRoute
   '/produkt/$slug': typeof ProduktSlugRoute
+  '/api/public/webhooks/stripe': typeof ApiPublicWebhooksStripeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/shop': typeof ShopRoute
+  '/warenkorb': typeof WarenkorbRoute
   '/produkt/$slug': typeof ProduktSlugRoute
+  '/api/public/webhooks/stripe': typeof ApiPublicWebhooksStripeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/shop': typeof ShopRoute
+  '/warenkorb': typeof WarenkorbRoute
   '/produkt/$slug': typeof ProduktSlugRoute
+  '/api/public/webhooks/stripe': typeof ApiPublicWebhooksStripeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/shop' | '/produkt/$slug'
+  fullPaths:
+    | '/'
+    | '/shop'
+    | '/warenkorb'
+    | '/produkt/$slug'
+    | '/api/public/webhooks/stripe'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/shop' | '/produkt/$slug'
-  id: '__root__' | '/' | '/shop' | '/produkt/$slug'
+  to:
+    | '/'
+    | '/shop'
+    | '/warenkorb'
+    | '/produkt/$slug'
+    | '/api/public/webhooks/stripe'
+  id:
+    | '__root__'
+    | '/'
+    | '/shop'
+    | '/warenkorb'
+    | '/produkt/$slug'
+    | '/api/public/webhooks/stripe'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ShopRoute: typeof ShopRoute
+  WarenkorbRoute: typeof WarenkorbRoute
   ProduktSlugRoute: typeof ProduktSlugRoute
+  ApiPublicWebhooksStripeRoute: typeof ApiPublicWebhooksStripeRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -75,11 +111,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ShopRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/warenkorb': {
+      id: '/warenkorb'
+      path: '/warenkorb'
+      fullPath: '/warenkorb'
+      preLoaderRoute: typeof WarenkorbRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/produkt/$slug': {
       id: '/produkt/$slug'
       path: '/produkt/$slug'
       fullPath: '/produkt/$slug'
       preLoaderRoute: typeof ProduktSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/webhooks/stripe': {
+      id: '/api/public/webhooks/stripe'
+      path: '/api/public/webhooks/stripe'
+      fullPath: '/api/public/webhooks/stripe'
+      preLoaderRoute: typeof ApiPublicWebhooksStripeRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -88,7 +138,9 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ShopRoute: ShopRoute,
+  WarenkorbRoute: WarenkorbRoute,
   ProduktSlugRoute: ProduktSlugRoute,
+  ApiPublicWebhooksStripeRoute: ApiPublicWebhooksStripeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
