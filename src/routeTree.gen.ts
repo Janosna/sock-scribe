@@ -10,11 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AgbRouteImport } from './routes/agb'
 import { Route as BestellungRouteImport } from './routes/bestellung'
 import { Route as CheckoutRouteImport } from './routes/checkout'
+import { Route as DatenschutzRouteImport } from './routes/datenschutz'
 import { Route as FaqRouteImport } from './routes/faq'
+import { Route as ImpressumRouteImport } from './routes/impressum'
+import { Route as KontaktRouteImport } from './routes/kontakt'
+import { Route as RueckgabeRouteImport } from './routes/rueckgabe'
 import { Route as ShopRouteImport } from './routes/shop'
 import { Route as UeberUnsRouteImport } from './routes/ueber-uns'
+import { Route as VersandRouteImport } from './routes/versand'
 import { Route as WarenkorbRouteImport } from './routes/warenkorb'
 import { Route as ProduktSlugRouteImport } from './routes/produkt.$slug'
 import { Route as ApiPublicWebhooksStripeRouteImport } from './routes/api/public/webhooks/stripe'
@@ -22,6 +28,11 @@ import { Route as ApiPublicWebhooksStripeRouteImport } from './routes/api/public
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AgbRoute = AgbRouteImport.update({
+  id: '/agb',
+  path: '/agb',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BestellungRoute = BestellungRouteImport.update({
@@ -34,9 +45,29 @@ const CheckoutRoute = CheckoutRouteImport.update({
   path: '/checkout',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DatenschutzRoute = DatenschutzRouteImport.update({
+  id: '/datenschutz',
+  path: '/datenschutz',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FaqRoute = FaqRouteImport.update({
   id: '/faq',
   path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ImpressumRoute = ImpressumRouteImport.update({
+  id: '/impressum',
+  path: '/impressum',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KontaktRoute = KontaktRouteImport.update({
+  id: '/kontakt',
+  path: '/kontakt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RueckgabeRoute = RueckgabeRouteImport.update({
+  id: '/rueckgabe',
+  path: '/rueckgabe',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ShopRoute = ShopRouteImport.update({
@@ -47,6 +78,11 @@ const ShopRoute = ShopRouteImport.update({
 const UeberUnsRoute = UeberUnsRouteImport.update({
   id: '/ueber-uns',
   path: '/ueber-uns',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VersandRoute = VersandRouteImport.update({
+  id: '/versand',
+  path: '/versand',
   getParentRoute: () => rootRouteImport,
 } as any)
 const WarenkorbRoute = WarenkorbRouteImport.update({
@@ -67,22 +103,34 @@ const ApiPublicWebhooksStripeRoute = ApiPublicWebhooksStripeRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/agb': typeof AgbRoute
   '/bestellung': typeof BestellungRoute
   '/checkout': typeof CheckoutRoute
+  '/datenschutz': typeof DatenschutzRoute
   '/faq': typeof FaqRoute
+  '/impressum': typeof ImpressumRoute
+  '/kontakt': typeof KontaktRoute
+  '/rueckgabe': typeof RueckgabeRoute
   '/shop': typeof ShopRoute
   '/ueber-uns': typeof UeberUnsRoute
+  '/versand': typeof VersandRoute
   '/warenkorb': typeof WarenkorbRoute
   '/produkt/$slug': typeof ProduktSlugRoute
   '/api/public/webhooks/stripe': typeof ApiPublicWebhooksStripeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/agb': typeof AgbRoute
   '/bestellung': typeof BestellungRoute
   '/checkout': typeof CheckoutRoute
+  '/datenschutz': typeof DatenschutzRoute
   '/faq': typeof FaqRoute
+  '/impressum': typeof ImpressumRoute
+  '/kontakt': typeof KontaktRoute
+  '/rueckgabe': typeof RueckgabeRoute
   '/shop': typeof ShopRoute
   '/ueber-uns': typeof UeberUnsRoute
+  '/versand': typeof VersandRoute
   '/warenkorb': typeof WarenkorbRoute
   '/produkt/$slug': typeof ProduktSlugRoute
   '/api/public/webhooks/stripe': typeof ApiPublicWebhooksStripeRoute
@@ -90,11 +138,17 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/agb': typeof AgbRoute
   '/bestellung': typeof BestellungRoute
   '/checkout': typeof CheckoutRoute
+  '/datenschutz': typeof DatenschutzRoute
   '/faq': typeof FaqRoute
+  '/impressum': typeof ImpressumRoute
+  '/kontakt': typeof KontaktRoute
+  '/rueckgabe': typeof RueckgabeRoute
   '/shop': typeof ShopRoute
   '/ueber-uns': typeof UeberUnsRoute
+  '/versand': typeof VersandRoute
   '/warenkorb': typeof WarenkorbRoute
   '/produkt/$slug': typeof ProduktSlugRoute
   '/api/public/webhooks/stripe': typeof ApiPublicWebhooksStripeRoute
@@ -103,33 +157,51 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/agb'
     | '/bestellung'
     | '/checkout'
+    | '/datenschutz'
     | '/faq'
+    | '/impressum'
+    | '/kontakt'
+    | '/rueckgabe'
     | '/shop'
     | '/ueber-uns'
+    | '/versand'
     | '/warenkorb'
     | '/produkt/$slug'
     | '/api/public/webhooks/stripe'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/agb'
     | '/bestellung'
     | '/checkout'
+    | '/datenschutz'
     | '/faq'
+    | '/impressum'
+    | '/kontakt'
+    | '/rueckgabe'
     | '/shop'
     | '/ueber-uns'
+    | '/versand'
     | '/warenkorb'
     | '/produkt/$slug'
     | '/api/public/webhooks/stripe'
   id:
     | '__root__'
     | '/'
+    | '/agb'
     | '/bestellung'
     | '/checkout'
+    | '/datenschutz'
     | '/faq'
+    | '/impressum'
+    | '/kontakt'
+    | '/rueckgabe'
     | '/shop'
     | '/ueber-uns'
+    | '/versand'
     | '/warenkorb'
     | '/produkt/$slug'
     | '/api/public/webhooks/stripe'
@@ -137,11 +209,17 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AgbRoute: typeof AgbRoute
   BestellungRoute: typeof BestellungRoute
   CheckoutRoute: typeof CheckoutRoute
+  DatenschutzRoute: typeof DatenschutzRoute
   FaqRoute: typeof FaqRoute
+  ImpressumRoute: typeof ImpressumRoute
+  KontaktRoute: typeof KontaktRoute
+  RueckgabeRoute: typeof RueckgabeRoute
   ShopRoute: typeof ShopRoute
   UeberUnsRoute: typeof UeberUnsRoute
+  VersandRoute: typeof VersandRoute
   WarenkorbRoute: typeof WarenkorbRoute
   ProduktSlugRoute: typeof ProduktSlugRoute
   ApiPublicWebhooksStripeRoute: typeof ApiPublicWebhooksStripeRoute
@@ -154,6 +232,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/agb': {
+      id: '/agb'
+      path: '/agb'
+      fullPath: '/agb'
+      preLoaderRoute: typeof AgbRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/bestellung': {
@@ -170,11 +255,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CheckoutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/datenschutz': {
+      id: '/datenschutz'
+      path: '/datenschutz'
+      fullPath: '/datenschutz'
+      preLoaderRoute: typeof DatenschutzRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/faq': {
       id: '/faq'
       path: '/faq'
       fullPath: '/faq'
       preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/impressum': {
+      id: '/impressum'
+      path: '/impressum'
+      fullPath: '/impressum'
+      preLoaderRoute: typeof ImpressumRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kontakt': {
+      id: '/kontakt'
+      path: '/kontakt'
+      fullPath: '/kontakt'
+      preLoaderRoute: typeof KontaktRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rueckgabe': {
+      id: '/rueckgabe'
+      path: '/rueckgabe'
+      fullPath: '/rueckgabe'
+      preLoaderRoute: typeof RueckgabeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/shop': {
@@ -189,6 +302,13 @@ declare module '@tanstack/react-router' {
       path: '/ueber-uns'
       fullPath: '/ueber-uns'
       preLoaderRoute: typeof UeberUnsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/versand': {
+      id: '/versand'
+      path: '/versand'
+      fullPath: '/versand'
+      preLoaderRoute: typeof VersandRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/warenkorb': {
@@ -217,11 +337,17 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AgbRoute: AgbRoute,
   BestellungRoute: BestellungRoute,
   CheckoutRoute: CheckoutRoute,
+  DatenschutzRoute: DatenschutzRoute,
   FaqRoute: FaqRoute,
+  ImpressumRoute: ImpressumRoute,
+  KontaktRoute: KontaktRoute,
+  RueckgabeRoute: RueckgabeRoute,
   ShopRoute: ShopRoute,
   UeberUnsRoute: UeberUnsRoute,
+  VersandRoute: VersandRoute,
   WarenkorbRoute: WarenkorbRoute,
   ProduktSlugRoute: ProduktSlugRoute,
   ApiPublicWebhooksStripeRoute: ApiPublicWebhooksStripeRoute,
