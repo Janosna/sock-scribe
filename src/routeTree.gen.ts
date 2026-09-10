@@ -10,18 +10,42 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AgbRouteImport } from './routes/agb'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as BestellungRouteImport } from './routes/bestellung'
 import { Route as CheckoutRouteImport } from './routes/checkout'
+import { Route as DatenschutzRouteImport } from './routes/datenschutz'
 import { Route as FaqRouteImport } from './routes/faq'
+import { Route as ImpressumRouteImport } from './routes/impressum'
+import { Route as KontaktRouteImport } from './routes/kontakt'
+import { Route as RueckgabeRouteImport } from './routes/rueckgabe'
 import { Route as ShopRouteImport } from './routes/shop'
 import { Route as UeberUnsRouteImport } from './routes/ueber-uns'
+import { Route as VersandRouteImport } from './routes/versand'
 import { Route as WarenkorbRouteImport } from './routes/warenkorb'
 import { Route as ProduktSlugRouteImport } from './routes/produkt.$slug'
+import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
+import { Route as AuthenticatedAdminProduktionRouteImport } from './routes/_authenticated/admin.produktion'
 import { Route as ApiPublicWebhooksStripeRouteImport } from './routes/api/public/webhooks/stripe'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AgbRoute = AgbRouteImport.update({
+  id: '/agb',
+  path: '/agb',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BestellungRoute = BestellungRouteImport.update({
@@ -34,9 +58,29 @@ const CheckoutRoute = CheckoutRouteImport.update({
   path: '/checkout',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DatenschutzRoute = DatenschutzRouteImport.update({
+  id: '/datenschutz',
+  path: '/datenschutz',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FaqRoute = FaqRouteImport.update({
   id: '/faq',
   path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ImpressumRoute = ImpressumRouteImport.update({
+  id: '/impressum',
+  path: '/impressum',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KontaktRoute = KontaktRouteImport.update({
+  id: '/kontakt',
+  path: '/kontakt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RueckgabeRoute = RueckgabeRouteImport.update({
+  id: '/rueckgabe',
+  path: '/rueckgabe',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ShopRoute = ShopRouteImport.update({
@@ -49,6 +93,11 @@ const UeberUnsRoute = UeberUnsRouteImport.update({
   path: '/ueber-uns',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VersandRoute = VersandRouteImport.update({
+  id: '/versand',
+  path: '/versand',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WarenkorbRoute = WarenkorbRouteImport.update({
   id: '/warenkorb',
   path: '/warenkorb',
@@ -59,6 +108,17 @@ const ProduktSlugRoute = ProduktSlugRouteImport.update({
   path: '/produkt/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
+  id: '/admin/',
+  path: '/admin/',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedAdminProduktionRoute =
+  AuthenticatedAdminProduktionRouteImport.update({
+    id: '/admin/produktion',
+    path: '/admin/produktion',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const ApiPublicWebhooksStripeRoute = ApiPublicWebhooksStripeRouteImport.update({
   id: '/api/public/webhooks/stripe',
   path: '/api/public/webhooks/stripe',
@@ -67,81 +127,145 @@ const ApiPublicWebhooksStripeRoute = ApiPublicWebhooksStripeRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/agb': typeof AgbRoute
+  '/auth': typeof AuthRoute
   '/bestellung': typeof BestellungRoute
   '/checkout': typeof CheckoutRoute
+  '/datenschutz': typeof DatenschutzRoute
   '/faq': typeof FaqRoute
+  '/impressum': typeof ImpressumRoute
+  '/kontakt': typeof KontaktRoute
+  '/rueckgabe': typeof RueckgabeRoute
   '/shop': typeof ShopRoute
   '/ueber-uns': typeof UeberUnsRoute
+  '/versand': typeof VersandRoute
   '/warenkorb': typeof WarenkorbRoute
   '/produkt/$slug': typeof ProduktSlugRoute
+  '/admin/produktion': typeof AuthenticatedAdminProduktionRoute
+  '/admin/': typeof AuthenticatedAdminIndexRoute
   '/api/public/webhooks/stripe': typeof ApiPublicWebhooksStripeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/agb': typeof AgbRoute
+  '/auth': typeof AuthRoute
   '/bestellung': typeof BestellungRoute
   '/checkout': typeof CheckoutRoute
+  '/datenschutz': typeof DatenschutzRoute
   '/faq': typeof FaqRoute
+  '/impressum': typeof ImpressumRoute
+  '/kontakt': typeof KontaktRoute
+  '/rueckgabe': typeof RueckgabeRoute
   '/shop': typeof ShopRoute
   '/ueber-uns': typeof UeberUnsRoute
+  '/versand': typeof VersandRoute
   '/warenkorb': typeof WarenkorbRoute
   '/produkt/$slug': typeof ProduktSlugRoute
+  '/admin/produktion': typeof AuthenticatedAdminProduktionRoute
+  '/admin': typeof AuthenticatedAdminIndexRoute
   '/api/public/webhooks/stripe': typeof ApiPublicWebhooksStripeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/agb': typeof AgbRoute
+  '/auth': typeof AuthRoute
   '/bestellung': typeof BestellungRoute
   '/checkout': typeof CheckoutRoute
+  '/datenschutz': typeof DatenschutzRoute
   '/faq': typeof FaqRoute
+  '/impressum': typeof ImpressumRoute
+  '/kontakt': typeof KontaktRoute
+  '/rueckgabe': typeof RueckgabeRoute
   '/shop': typeof ShopRoute
   '/ueber-uns': typeof UeberUnsRoute
+  '/versand': typeof VersandRoute
   '/warenkorb': typeof WarenkorbRoute
   '/produkt/$slug': typeof ProduktSlugRoute
+  '/_authenticated/admin/produktion': typeof AuthenticatedAdminProduktionRoute
+  '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
   '/api/public/webhooks/stripe': typeof ApiPublicWebhooksStripeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/agb'
+    | '/auth'
     | '/bestellung'
     | '/checkout'
+    | '/datenschutz'
     | '/faq'
+    | '/impressum'
+    | '/kontakt'
+    | '/rueckgabe'
     | '/shop'
     | '/ueber-uns'
+    | '/versand'
     | '/warenkorb'
     | '/produkt/$slug'
+    | '/admin/produktion'
+    | '/admin/'
     | '/api/public/webhooks/stripe'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/agb'
+    | '/auth'
     | '/bestellung'
     | '/checkout'
+    | '/datenschutz'
     | '/faq'
+    | '/impressum'
+    | '/kontakt'
+    | '/rueckgabe'
     | '/shop'
     | '/ueber-uns'
+    | '/versand'
     | '/warenkorb'
     | '/produkt/$slug'
+    | '/admin/produktion'
+    | '/admin'
     | '/api/public/webhooks/stripe'
   id:
     | '__root__'
     | '/'
+    | '/_authenticated'
+    | '/agb'
+    | '/auth'
     | '/bestellung'
     | '/checkout'
+    | '/datenschutz'
     | '/faq'
+    | '/impressum'
+    | '/kontakt'
+    | '/rueckgabe'
     | '/shop'
     | '/ueber-uns'
+    | '/versand'
     | '/warenkorb'
     | '/produkt/$slug'
+    | '/_authenticated/admin/produktion'
+    | '/_authenticated/admin/'
     | '/api/public/webhooks/stripe'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AgbRoute: typeof AgbRoute
+  AuthRoute: typeof AuthRoute
   BestellungRoute: typeof BestellungRoute
   CheckoutRoute: typeof CheckoutRoute
+  DatenschutzRoute: typeof DatenschutzRoute
   FaqRoute: typeof FaqRoute
+  ImpressumRoute: typeof ImpressumRoute
+  KontaktRoute: typeof KontaktRoute
+  RueckgabeRoute: typeof RueckgabeRoute
   ShopRoute: typeof ShopRoute
   UeberUnsRoute: typeof UeberUnsRoute
+  VersandRoute: typeof VersandRoute
   WarenkorbRoute: typeof WarenkorbRoute
   ProduktSlugRoute: typeof ProduktSlugRoute
   ApiPublicWebhooksStripeRoute: typeof ApiPublicWebhooksStripeRoute
@@ -154,6 +278,27 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/agb': {
+      id: '/agb'
+      path: '/agb'
+      fullPath: '/agb'
+      preLoaderRoute: typeof AgbRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/bestellung': {
@@ -170,11 +315,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CheckoutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/datenschutz': {
+      id: '/datenschutz'
+      path: '/datenschutz'
+      fullPath: '/datenschutz'
+      preLoaderRoute: typeof DatenschutzRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/faq': {
       id: '/faq'
       path: '/faq'
       fullPath: '/faq'
       preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/impressum': {
+      id: '/impressum'
+      path: '/impressum'
+      fullPath: '/impressum'
+      preLoaderRoute: typeof ImpressumRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kontakt': {
+      id: '/kontakt'
+      path: '/kontakt'
+      fullPath: '/kontakt'
+      preLoaderRoute: typeof KontaktRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rueckgabe': {
+      id: '/rueckgabe'
+      path: '/rueckgabe'
+      fullPath: '/rueckgabe'
+      preLoaderRoute: typeof RueckgabeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/shop': {
@@ -191,6 +364,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UeberUnsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/versand': {
+      id: '/versand'
+      path: '/versand'
+      fullPath: '/versand'
+      preLoaderRoute: typeof VersandRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/warenkorb': {
       id: '/warenkorb'
       path: '/warenkorb'
@@ -205,6 +385,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProduktSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/admin/': {
+      id: '/_authenticated/admin/'
+      path: '/admin'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/admin/produktion': {
+      id: '/_authenticated/admin/produktion'
+      path: '/admin/produktion'
+      fullPath: '/admin/produktion'
+      preLoaderRoute: typeof AuthenticatedAdminProduktionRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/api/public/webhooks/stripe': {
       id: '/api/public/webhooks/stripe'
       path: '/api/public/webhooks/stripe'
@@ -215,13 +409,34 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminProduktionRoute: typeof AuthenticatedAdminProduktionRoute
+  AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminProduktionRoute: AuthenticatedAdminProduktionRoute,
+  AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AgbRoute: AgbRoute,
+  AuthRoute: AuthRoute,
   BestellungRoute: BestellungRoute,
   CheckoutRoute: CheckoutRoute,
+  DatenschutzRoute: DatenschutzRoute,
   FaqRoute: FaqRoute,
+  ImpressumRoute: ImpressumRoute,
+  KontaktRoute: KontaktRoute,
+  RueckgabeRoute: RueckgabeRoute,
   ShopRoute: ShopRoute,
   UeberUnsRoute: UeberUnsRoute,
+  VersandRoute: VersandRoute,
   WarenkorbRoute: WarenkorbRoute,
   ProduktSlugRoute: ProduktSlugRoute,
   ApiPublicWebhooksStripeRoute: ApiPublicWebhooksStripeRoute,
