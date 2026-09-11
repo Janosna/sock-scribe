@@ -35,7 +35,7 @@ export function SiteHeader() {
             <Link
               key={item.label}
               to={item.to}
-              search={"search" in item ? (item.search as never) : undefined}
+              {...("search" in item ? { search: item.search as never } : {})}
               className="text-muted-foreground transition-colors hover:text-foreground"
             >
               {item.label}
@@ -68,7 +68,7 @@ export function SiteHeader() {
               <li key={item.label}>
                 <Link
                   to={item.to}
-                  search={"search" in item ? (item.search as never) : undefined}
+                  {...("search" in item ? { search: item.search as never } : {})}
                   onClick={() => setMobile(false)}
                   className="block py-1"
                 >

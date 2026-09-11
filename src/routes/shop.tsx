@@ -53,11 +53,18 @@ export const Route = createFileRoute("/shop")({
 
 function Shop() {
   const { data: products } = useSuspenseQuery(productsQuery);
-  const search = Route.useSearch();
+  const raw = Route.useSearch();
+  const search = {
+    kategorie: raw.kategorie ?? "alle",
+    sortierung: raw.sortierung ?? "beliebt",
+    groesse: raw.groesse ?? "alle",
+    farbe: raw.farbe ?? "alle",
+    maxPreis: raw.maxPreis ?? 50,
+  };
   const navigate = useNavigate({ from: "/shop" });
 
-  const update = (patch: Partial<Search>) =>
-    navigate({ search: (prev) => ({ ...prev, ...patch }) });
+  const update = (patch: Search) =>
+    navigate({ to: ".", search: (prev) => ({ ...prev, ...patch }) });
 
   const colors = Array.from(new Set(products.map((p) => p.base_color)));
 
