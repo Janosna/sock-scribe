@@ -35,7 +35,7 @@ export const Route = createFileRoute("/shop")({
       },
     ],
   }),
-  validateSearch: (search: Record<string, unknown>): Search => ({
+  validateSearch: (search: Partial<Record<keyof Search, unknown>>): Search => ({
     kategorie: typeof search["kategorie"] === "string" ? search["kategorie"] : "alle",
     sortierung: typeof search["sortierung"] === "string" ? search["sortierung"] : "beliebt",
     groesse: typeof search["groesse"] === "string" ? search["groesse"] : "alle",
