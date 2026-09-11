@@ -12,11 +12,11 @@ import {
 import { Slider } from "@/components/ui/slider";
 
 type Search = {
-  kategorie: string;
-  sortierung: string;
-  groesse: string;
-  farbe: string;
-  maxPreis: number;
+  kategorie?: string;
+  sortierung?: string;
+  groesse?: string;
+  farbe?: string;
+  maxPreis?: number;
 };
 
 export const Route = createFileRoute("/shop")({
@@ -35,13 +35,16 @@ export const Route = createFileRoute("/shop")({
       },
     ],
   }),
-  validateSearch: (search: Partial<Record<keyof Search, unknown>>): Search => ({
-    kategorie: typeof search["kategorie"] === "string" ? search["kategorie"] : "alle",
-    sortierung: typeof search["sortierung"] === "string" ? search["sortierung"] : "beliebt",
-    groesse: typeof search["groesse"] === "string" ? search["groesse"] : "alle",
-    farbe: typeof search["farbe"] === "string" ? search["farbe"] : "alle",
-    maxPreis: Number(search["maxPreis"]) || 50,
-  }),
+  validateSearch: (search: Record<string, unknown>): Search => {
+    const out: Search = {};
+    for (const key of ["kategorie", "sortierung", "groesse", "farbe"] as const) {
+      const value = search[key];
+      if (typeof value === "string") out[key] = value;
+    }
+    const price = Number(search["maxPreis"]);
+    if (Number.isFinite(price) && price > 0) out.maxPreis = price;
+    return out;
+  },
   loader: ({ context }) => context.queryClient.ensureQueryData(productsQuery),
   component: Shop,
   errorComponent: () => <p className="container-page py-24">Produkte konnten nicht laden.</p>,
